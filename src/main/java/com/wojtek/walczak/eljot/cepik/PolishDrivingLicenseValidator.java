@@ -6,7 +6,7 @@ public class PolishDrivingLicenseValidator {
 
     // podstawowy wzorzec: 10 znaków A-Z lub 0-9
     private static final Pattern BASE_PATTERN =
-            Pattern.compile("^[A-Z0-9]{10}$");
+            Pattern.compile("^[A-Z0-9]{8}$");
 
 
     public static boolean isValid(String number) {
