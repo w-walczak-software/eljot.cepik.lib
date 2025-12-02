@@ -1,20 +1,4 @@
 steps:
-  - id: clean
-    name: 'maven:3.9-eclipse-temurin-17'
-    entrypoint: 'mvn'
-    args: ['-B', '-ntp', 'clean']
-    volumes:
-      - name: 'maven-cache'
-        path: /root/.m2
-
-  - id: jaxb-generate
-    name: 'maven:3.9-eclipse-temurin-17'
-    entrypoint: 'mvn'
-    args: ['-B', '-ntp', 'jaxb:generate']
-    volumes:
-      - name: 'maven-cache'
-        path: /root/.m2
-
   - id: deploy
     name: 'maven:3.9-eclipse-temurin-17'
     entrypoint: 'mvn'
