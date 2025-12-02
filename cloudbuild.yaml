@@ -3,9 +3,6 @@ steps:
     name: 'maven:3.9-eclipse-temurin-17'
     entrypoint: 'mvn'
     args: ['-B', '-ntp', '-DskipTests', 'deploy']
-    volumes:
-      - name: 'maven-cache'
-        path: /root/.m2
 
 options:
   logging: CLOUD_LOGGING_ONLY
