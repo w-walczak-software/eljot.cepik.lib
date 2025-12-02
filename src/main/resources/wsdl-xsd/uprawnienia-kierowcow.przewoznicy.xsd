@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:upki="http://uprawnieniakierowcow-przewoznicy.ul.api.cepik.coi.gov.pl"
+        targetNamespace="http://uprawnieniakierowcow-przewoznicy.ul.api.cepik.coi.gov.pl">
+
+    <annotation>
+        <documentation>
+            Uprawnienia Kierowców dla Przewoźników
+            Version: 1.0.1
+        </documentation>
+    </annotation>
+
+    <element name="DaneDokumentuRequest" type="upki:DaneDokumentuRequest"/>
+    <element name="DaneDokumentuResponse" type="upki:DaneDokumentuResponse"/>
+
+    <complexType name="DaneDokumentuRequest">
+        <sequence>
+            <element name="imiePierwsze" type="string"/>
+            <element name="nazwisko" type="string"/>
+            <element name="seriaNumerBlankietuDruku" type="string"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="DaneDokumentuResponse">
+        <sequence>
+            <element name="dokumentPotwierdzajacyUprawnienia" type="upki:DokumentPotwierdzajacyUprawnienia" minOccurs="0"/>
+            <element name="komunikaty" type="upki:Komunikat" minOccurs="0" maxOccurs="2"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="DokumentPotwierdzajacyUprawnienia">
+        <sequence>
+            <element name="typDokumentu" type="upki:KodWartoscSlownikowa" minOccurs="0"/>
+            <element name="seriaNumerBlankietuDruku" type="string"/>
+            <element name="organWydajacyDokument" type="upki:KodWartoscSlownikowa"/>
+            <element name="dataWaznosci" type="date" minOccurs="0"/>
+            <element name="stanDokumentu" type="upki:StanDokumentuUpki" minOccurs="0"/>
+            <element name="daneUprawnieniaKategorii" type="upki:DaneUprawnieniaKategorii" minOccurs="0" maxOccurs="16"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="DaneUprawnieniaKategorii">
+        <sequence>
+            <element name="kategoria" type="string">
+                <annotation>
+                    <documentation>DICT.060 Kategoria uprawnienia</documentation>
+                </annotation>
+            </element>
+            <element name="dataWaznosci" type="date" minOccurs="0"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="KodWartoscSlownikowa">
+        <sequence>
+            <element name="kod" type="string"/>
+            <element name="wartosc" type="string"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Komunikat">
+        <sequence>
+            <element name="kod" type="string">
+                <annotation>
+                    <documentation>DICT.462 Komunikaty biznesowe</documentation>
+                </annotation>
+            </element>
+            <element name="opis" type="string"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="StanDokumentuUpki">
+        <sequence>
+            <element name="stanDokumentu" type="upki:KodWartoscSlownikowa">
+                <annotation>
+                    <documentation>DICT.003A Stan dokumentu UpKi</documentation>
+                </annotation>
+            </element>
+            <element name="powodZmianyStanu" type="upki:KodWartoscSlownikowa" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+</schema>
